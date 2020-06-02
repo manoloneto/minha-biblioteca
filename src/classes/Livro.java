@@ -48,6 +48,11 @@ public class Livro {
         return edicao;
     }
 
+    public int getTem() {
+        if(isTem()) return 1;
+        else return 0;
+    }
+
     public boolean isTem() {
         return tem;
     }

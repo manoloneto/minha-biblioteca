@@ -17,7 +17,6 @@ public class RepositorioLivros {
     
     public static void teste(){
         try{
-            boolean x = true;
             sql = conexao.prepareStatement("Insert into livros(titulo,ano,editora,autor,tem,edicao,serie) VALUES ('teste', '1', 'teste', 'teste','1', 'teste', 'teste')");
             sql.executeUpdate();
             DBConnection.closeConnection(conexao);
