@@ -15,18 +15,31 @@ public class RepositorioLivros {
     private static Connection conexao = DBConnection.openConnection();
     private static PreparedStatement sql;
     
-    public static void teste(){
+    public static boolean adicoinar(Livro livro){
+        boolean retorno = false;
         try{
-            sql = conexao.prepareStatement("Insert into livros(titulo,ano,editora,autor,tem,edicao,serie) VALUES ('teste', '1', 'teste', 'teste','1', 'teste', 'teste')");
+            sql = conexao.prepareStatement(
+                    "INSERT INTO livros (titulo,ano,editora,autor,tem,edicao,serie) VALUES ("
+                            + "'" + livro.getTitulo() + "', "
+                            + "'" + livro.getAno()+ "', "
+                            + "'" + livro.getEditora()+ "', "
+                            + "'" + livro.getAutor()+ "', "
+                            + "'" + livro.getTem()+ "', "
+                            + "'" + livro.getEdicao()+ "', "
+                            + "'" + livro.getSerie()+ "')"
+            );
+            
             sql.executeUpdate();
-            DBConnection.closeConnection(conexao);
+            
+            retorno = true;
+            
         }catch(Exception e){
-            //nada
-        } 
-    }
-    
-    public static void adicoinar(Livro livro){
-        livros.add(livro);
+            retorno = false;
+        } finally {
+            DBConnection.closeConnection(conexao);
+        }
+        
+        return retorno;
     }
     
     public static ArrayList<Livro> listar(){

@@ -5,6 +5,10 @@
  */
 package telas;
 
+import classes.Livro;
+import javax.swing.JOptionPane;
+import repositorio.RepositorioLivros;
+
 /**
  *
  * @author manoel.neto
@@ -28,6 +32,7 @@ public class TelaNovoLivro extends javax.swing.JFrame {
     private void initComponents() {
 
         btnVoltar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,21 +43,32 @@ public class TelaNovoLivro extends javax.swing.JFrame {
             }
         });
 
+        btnSalvar.setText("Salvar");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(222, Short.MAX_VALUE)
+                .addComponent(btnSalvar)
+                .addGap(18, 18, 18)
                 .addComponent(btnVoltar)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addComponent(btnVoltar)
-                .addGap(128, 128, 128))
+                .addContainerGap(262, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnVoltar))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -62,6 +78,26 @@ public class TelaNovoLivro extends javax.swing.JFrame {
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         voltarParaOMenu();
     }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+        Livro livro = new Livro(
+                "Livro teste",
+                2020,
+                "Livro teste",
+                "Livro teste",
+                "Livro teste",
+                "Livro teste",
+                true
+        );
+        
+        boolean sucesso = RepositorioLivros.adicoinar(livro);
+        
+        if(sucesso){
+            JOptionPane.showMessageDialog(rootPane, "Sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Erro!");
+        }
+    }//GEN-LAST:event_btnSalvarMouseClicked
 
     private void voltarParaOMenu(){
         TelaPrincipal tela = new TelaPrincipal();
@@ -105,6 +141,7 @@ public class TelaNovoLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     // End of variables declaration//GEN-END:variables
 }
