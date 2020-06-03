@@ -183,13 +183,23 @@ public class TelaNovoLivro extends javax.swing.JFrame {
         boolean sucesso = RepositorioLivros.adicoinar(livro);
         
         if(sucesso){
-            JOptionPane.showMessageDialog(rootPane, "Livro salvo com sucesso!");
-            voltarParaOMenu();
+            int resp = JOptionPane.showInternalConfirmDialog(null, "Gostaria de cadastrar um novo livro na mesma série?", "Salvo com sucesso", 0);
+            if(resp == 0){
+                limpaTela();
+            }else{
+                voltarParaOMenu();
+            }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Erro ao salvar livro...");
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
 
+    private void limpaTela(){
+        if(txtSerie.getText().isBlank()) txtSerie.setText(txtTitulo.getText());
+        txtTitulo.setText("");
+        txtAno.setText("");
+    }
+    
     private Livro montaLivro(){
         String serie = txtSerie.getText();
         if(serie.isBlank()) serie = txtTitulo.getText();

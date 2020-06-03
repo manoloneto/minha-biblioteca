@@ -12,12 +12,14 @@ import java.sql.ResultSet;
  */
 public class RepositorioLivros {
     
-    private static Connection conexao = DBConnection.openConnection();
+    private static Connection conexao;
     private static PreparedStatement sql;
     
     public static boolean adicoinar(Livro livro){
         boolean retorno = false;
         try{
+            conexao = DBConnection.openConnection();
+            
             sql = conexao.prepareStatement(
                     "INSERT INTO livros (titulo,ano,editora,autor,tem,edicao,serie) VALUES ("
                             + "'" + livro.getTitulo() + "', "
@@ -45,6 +47,8 @@ public class RepositorioLivros {
     public static ArrayList<Livro> listar(){
         ArrayList<Livro> livros = new ArrayList<Livro>();
         try{
+            conexao = DBConnection.openConnection();
+            
             sql = conexao.prepareStatement("SELECT * FROM livros");
             
             ResultSet rs = sql.executeQuery();
