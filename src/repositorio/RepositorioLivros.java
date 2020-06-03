@@ -5,12 +5,12 @@ import classes.Livro;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 /**
  * @author manoel.neto
  */
 public class RepositorioLivros {
-    private static ArrayList<Livro> livros = new ArrayList<Livro>();
     
     private static Connection conexao = DBConnection.openConnection();
     private static PreparedStatement sql;
@@ -43,6 +43,30 @@ public class RepositorioLivros {
     }
     
     public static ArrayList<Livro> listar(){
+        ArrayList<Livro> livros = new ArrayList<Livro>();
+        try{
+            sql = conexao.prepareStatement("SELECT * FROM livros");
+            
+            ResultSet rs = sql.executeQuery();
+            
+            while(rs.next()){
+                livros.add(new Livro(
+                        rs.getString("titulo"),
+                        rs.getInt("ano"),
+                        rs.getString("autor"),
+                        rs.getString("editora"),
+                        rs.getString("serie"),
+                        rs.getString("edicao"),
+                        rs.getInt("tem")
+                ));
+            }
+            
+        }catch(Exception e){
+            livros = null;
+        } finally {
+            DBConnection.closeConnection(conexao);
+        }
+        
         return livros;
     }
 }

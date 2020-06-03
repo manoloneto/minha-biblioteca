@@ -43,6 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Minha biblioteca");
 
         btnMeusLivros.setText("Meus livros");
+        btnMeusLivros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMeusLivrosMouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("0.0.1");
@@ -93,6 +98,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnNovoLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoLivroMouseClicked
         mostrarTela(new TelaNovoLivro());
     }//GEN-LAST:event_btnNovoLivroMouseClicked
+
+    private void btnMeusLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMeusLivrosMouseClicked
+        String exemplares = "";
+        for(Livro livro : RepositorioLivros.listar()){
+            exemplares += livro.getTitulo() + " (" + livro.getAno() + ")\n";
+        }
+        JOptionPane.showMessageDialog(rootPane, exemplares);
+    }//GEN-LAST:event_btnMeusLivrosMouseClicked
 
     private void mostrarTela(javax.swing.JFrame tela){
         tela.setVisible(true);

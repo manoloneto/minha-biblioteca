@@ -31,8 +31,24 @@ public class TelaNovoLivro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgTem = new javax.swing.ButtonGroup();
         btnVoltar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
+        txtEditora = new javax.swing.JTextField();
+        txtAno = new javax.swing.JTextField();
+        txtEdicao = new javax.swing.JTextField();
+        rbtColecao = new javax.swing.JRadioButton();
+        rbtListaDeDesejos = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtSerie = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,21 +66,103 @@ public class TelaNovoLivro extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font(".SF NS Text", 0, 23)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Novo livro");
+
+        jLabel2.setText("Título:");
+
+        btgTem.add(rbtColecao);
+        rbtColecao.setSelected(true);
+        rbtColecao.setText("Adicionar à coleção");
+
+        btgTem.add(rbtListaDeDesejos);
+        rbtListaDeDesejos.setText("Adicionar à lista de desejos");
+
+        jLabel3.setText("Autor:");
+
+        jLabel4.setText("Editora:");
+
+        jLabel5.setText("Ano:");
+
+        jLabel6.setText("Edição:");
+
+        jLabel7.setText("Série:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(222, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(btnVoltar)
-                .addGap(16, 16, 16))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rbtColecao)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbtListaDeDesejos))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnSalvar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnVoltar))
+                                    .addComponent(txtAno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                                    .addComponent(txtEditora, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtAutor, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTitulo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtEdicao, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtSerie, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(10, 10, 10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtColecao)
+                    .addComponent(rbtListaDeDesejos))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnVoltar))
@@ -80,25 +178,33 @@ public class TelaNovoLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
-        Livro livro = new Livro(
-                "Livro teste",
-                2020,
-                "Livro teste",
-                "Livro teste",
-                "Livro teste",
-                "Livro teste",
-                true
-        );
+        Livro livro = montaLivro();
         
         boolean sucesso = RepositorioLivros.adicoinar(livro);
         
         if(sucesso){
-            JOptionPane.showMessageDialog(rootPane, "Sucesso!");
+            JOptionPane.showMessageDialog(rootPane, "Livro salvo com sucesso!");
+            voltarParaOMenu();
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Erro!");
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar livro...");
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
 
+    private Livro montaLivro(){
+        String serie = txtSerie.getText();
+        if(serie.isBlank()) serie = txtTitulo.getText();
+        
+        return new Livro(
+                txtTitulo.getText(),
+                Integer.parseInt(txtAno.getText()),
+                txtAutor.getText(),
+                txtEditora.getText(),
+                serie,
+                txtEdicao.getText(),
+                rbtColecao.isSelected()
+        );
+    }
+    
     private void voltarParaOMenu(){
         TelaPrincipal tela = new TelaPrincipal();
         tela.setVisible(true);
@@ -141,7 +247,23 @@ public class TelaNovoLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgTem;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JRadioButton rbtColecao;
+    private javax.swing.JRadioButton rbtListaDeDesejos;
+    private javax.swing.JTextField txtAno;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtEdicao;
+    private javax.swing.JTextField txtEditora;
+    private javax.swing.JTextField txtSerie;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,6 +24,20 @@ public class Livro {
         else this.serie = titulo;
     }
 
+    public Livro(String titulo, int ano, String autor, String editora, String serie, String edicao, int tem) {
+        this.titulo = titulo;
+        this.ano = ano;
+        this.autor = autor;
+        this.editora = editora;
+        this.edicao = edicao;
+        
+        if(tem == 1) this.tem = true;
+        else this.tem = false;
+        
+        if(serie != null) this.serie = serie;
+        else this.serie = titulo;
+    }
+
     public String getTitulo() {
         return titulo;
     }
