@@ -100,11 +100,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoLivroMouseClicked
 
     private void btnMeusLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMeusLivrosMouseClicked
-        String exemplares = "";
-        for(Livro livro : RepositorioLivros.listar()){
-            exemplares += livro.getTitulo() + " (" + livro.getAno() + ")\n";
-        }
-        JOptionPane.showMessageDialog(rootPane, exemplares);
+        TelaMeusLivros tela = new TelaMeusLivros();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnMeusLivrosMouseClicked
 
     private void mostrarTela(javax.swing.JFrame tela){
