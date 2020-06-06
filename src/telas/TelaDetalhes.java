@@ -41,6 +41,7 @@ public class TelaDetalhes extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JLabel();
         txtImage = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
+        txtAutor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +54,8 @@ public class TelaDetalhes extends javax.swing.JFrame {
             }
         });
 
+        txtAutor.setText("Autor: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,21 +65,26 @@ public class TelaDetalhes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnVoltar)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                            .addComponent(txtAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTitulo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtAutor))
                     .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(btnVoltar)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -87,7 +95,7 @@ public class TelaDetalhes extends javax.swing.JFrame {
         if(livro.hasImagem()) carregaImagem(livro.getImagem());
         
         txtTitulo.setText("Título: " + livro.getTitulo());
-        
+        txtAutor.setText("Autor: " + livro.getAutor());
     }
     
     private void carregaImagem(String imagem){
@@ -142,6 +150,7 @@ public class TelaDetalhes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel txtAutor;
     private javax.swing.JLabel txtImage;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables

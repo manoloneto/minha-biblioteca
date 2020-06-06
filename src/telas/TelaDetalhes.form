@@ -28,12 +28,15 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="txtTitulo" min="-2" pref="268" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtImage" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtTitulo" pref="330" max="32767" attributes="0"/>
+                          <Component id="txtAutor" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,12 +45,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtTitulo" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="txtTitulo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtAutor" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="txtImage" min="-2" pref="300" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="19" max="32767" attributes="0"/>
+              <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,6 +74,11 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVoltarMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtAutor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Autor: "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
