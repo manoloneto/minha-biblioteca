@@ -232,7 +232,7 @@ public class TelaNovoLivro extends javax.swing.JFrame {
         boolean sucesso = RepositorioLivros.adicoinar(livro);
         
         if(sucesso){
-            int resp = JOptionPane.showInternalConfirmDialog(null, "Gostaria de cadastrar um novo livro na mesma série?", "Salvo com sucesso", 0);
+            int resp = JOptionPane.showInternalConfirmDialog(null, "Livro salvo com sucesso!\nGostaria de cadastrar um novo livro na mesma série?", "Salvo com sucesso", 0);
             if(resp == 0){
                 limpaTela();
             }else{
