@@ -6,7 +6,11 @@
 package telas;
 
 import classes.Livro;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
+import javax.swing.text.DefaultEditorKit;
 import repositorio.RepositorioLivros;
 
 /**
@@ -20,6 +24,7 @@ public class TelaNovoLivro extends javax.swing.JFrame {
      */
     public TelaNovoLivro() {
         initComponents();
+        initFeatures();
     }
 
     /**
@@ -49,6 +54,8 @@ public class TelaNovoLivro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        txtImagem = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +96,8 @@ public class TelaNovoLivro extends javax.swing.JFrame {
 
         jLabel7.setText("Série:");
 
+        jLabel8.setText("Url da Imagem: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,32 +110,41 @@ public class TelaNovoLivro extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtColecao)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rbtListaDeDesejos))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnSalvar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnVoltar))
-                                    .addComponent(txtAno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
-                                    .addComponent(txtEditora, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtAutor, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtTitulo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtEdicao, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtSerie, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(10, 10, 10))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7))
+                                        .addGap(63, 63, 63)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtEdicao, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtAno, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtSerie)
+                                            .addComponent(txtEditora, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel8))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(rbtColecao)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(rbtListaDeDesejos))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addComponent(btnSalvar)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(btnVoltar)))
+                                            .addComponent(txtTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                                            .addComponent(txtAutor)
+                                            .addComponent(txtImagem, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                .addGap(10, 10, 10)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,6 +162,10 @@ public class TelaNovoLivro extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -158,7 +180,7 @@ public class TelaNovoLivro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtColecao)
                     .addComponent(rbtListaDeDesejos))
@@ -173,6 +195,33 @@ public class TelaNovoLivro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initFeatures(){
+        JPopupMenu menu = new JPopupMenu();
+        
+        Action cut = new DefaultEditorKit.CutAction();
+        cut.putValue(Action.NAME, "Recortar");
+        cut.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control X"));
+        menu.add(cut);
+
+        Action copy = new DefaultEditorKit.CopyAction();
+        copy.putValue(Action.NAME, "Copiar");
+        copy.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control C"));
+        menu.add(copy);
+
+        Action paste = new DefaultEditorKit.PasteAction();
+        paste.putValue(Action.NAME, "Colar");
+        paste.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
+        menu.add(paste);
+
+        txtTitulo.setComponentPopupMenu(menu);
+        txtAno.setComponentPopupMenu(menu);
+        txtAutor.setComponentPopupMenu(menu);
+        txtEditora.setComponentPopupMenu(menu);
+        txtEdicao.setComponentPopupMenu(menu);
+        txtSerie.setComponentPopupMenu(menu);
+        txtImagem.setComponentPopupMenu(menu);
+    }
+    
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         voltarParaOMenu();
     }//GEN-LAST:event_btnVoltarMouseClicked
@@ -196,8 +245,9 @@ public class TelaNovoLivro extends javax.swing.JFrame {
 
     private void limpaTela(){
         if(txtSerie.getText().isBlank()) txtSerie.setText(txtTitulo.getText());
-        txtTitulo.setText("");
+        txtTitulo.setText(txtSerie.getText());
         txtAno.setText("");
+        txtImagem.setText("");
     }
     
     private Livro montaLivro(){
@@ -211,7 +261,8 @@ public class TelaNovoLivro extends javax.swing.JFrame {
                 txtEditora.getText(),
                 serie,
                 txtEdicao.getText(),
-                rbtColecao.isSelected()
+                rbtColecao.isSelected(),
+                txtImagem.getText()
         );
     }
     
@@ -267,12 +318,14 @@ public class TelaNovoLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButton rbtColecao;
     private javax.swing.JRadioButton rbtListaDeDesejos;
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtEdicao;
     private javax.swing.JTextField txtEditora;
+    private javax.swing.JTextField txtImagem;
     private javax.swing.JTextField txtSerie;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables

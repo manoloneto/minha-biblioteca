@@ -11,10 +11,11 @@ import javax.swing.table.DefaultTableModel;
 import repositorio.RepositorioLivros;
 
 /**
- *
  * @author manoel.neto
  */
 public class TelaMeusLivros extends javax.swing.JFrame {
+    
+    private ArrayList<Livro> livros = new ArrayList<Livro>();
 
     /**
      * Creates new form TelaMeusLivros
@@ -36,6 +37,8 @@ public class TelaMeusLivros extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLivros = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
+        txtPesquisa = new javax.swing.JTextField();
+        btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +66,11 @@ public class TelaMeusLivros extends javax.swing.JFrame {
             }
         });
         tblLivros.getTableHeader().setReorderingAllowed(false);
+        tblLivros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblLivrosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblLivros);
         if (tblLivros.getColumnModel().getColumnCount() > 0) {
             tblLivros.getColumnModel().getColumn(0).setPreferredWidth(250);
@@ -77,25 +85,42 @@ public class TelaMeusLivros extends javax.swing.JFrame {
             }
         });
 
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFiltrarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVoltar)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(501, 501, 501)
+                        .addComponent(btnVoltar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFiltrar)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrar))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnVoltar)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,10 +131,25 @@ public class TelaMeusLivros extends javax.swing.JFrame {
         voltarParaOMenu();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
+    private void btnFiltrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseClicked
+        carregarTabela();
+    }//GEN-LAST:event_btnFiltrarMouseClicked
+
+    private void tblLivrosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLivrosMousePressed
+        if(evt.getClickCount() == 2){
+            TelaDetalhes tela = new TelaDetalhes(livros.get(tblLivros.getSelectedRow()));
+            tela.setVisible(true);
+        }
+    }//GEN-LAST:event_tblLivrosMousePressed
+
     private void carregarTabela(){
-        ArrayList<Livro> livros = RepositorioLivros.listar();
+        livros = RepositorioLivros.listar(txtPesquisa.getText());
+        
+        txtPesquisa.setText("");
         
         DefaultTableModel tabela = (DefaultTableModel) tblLivros.getModel();
+        
+        tabela.setRowCount(0);
         
         for(Livro livro : livros){
             tabela.addRow(new Object[] {
@@ -163,8 +203,10 @@ public class TelaMeusLivros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblLivros;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }

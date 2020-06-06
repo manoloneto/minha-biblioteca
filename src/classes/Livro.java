@@ -11,8 +11,9 @@ public class Livro {
     private String serie;
     private String edicao;
     private boolean tem;
+    private String imagem;
 
-    public Livro(String titulo, int ano, String autor, String editora, String serie, String edicao, boolean tem) {
+    public Livro(String titulo, int ano, String autor, String editora, String serie, String edicao, boolean tem, String imagem) {
         this.titulo = titulo;
         this.ano = ano;
         this.autor = autor;
@@ -22,9 +23,11 @@ public class Livro {
         
         if(serie != null) this.serie = serie;
         else this.serie = titulo;
+        
+        this.imagem = imagem;
     }
 
-    public Livro(String titulo, int ano, String autor, String editora, String serie, String edicao, int tem) {
+    public Livro(String titulo, int ano, String autor, String editora, String serie, String edicao, int tem, String imagem) {
         this.titulo = titulo;
         this.ano = ano;
         this.autor = autor;
@@ -36,6 +39,8 @@ public class Livro {
         
         if(serie != null) this.serie = serie;
         else this.serie = titulo;
+        
+        this.imagem = imagem;
     }
 
     public String getTitulo() {
@@ -69,5 +74,13 @@ public class Livro {
 
     public boolean isTem() {
         return tem;
+    }
+
+    public boolean hasImagem() {
+        return this.imagem != null && !this.imagem.isEmpty();
+    }
+
+    public String getImagem() {
+        return imagem;
     }
 }

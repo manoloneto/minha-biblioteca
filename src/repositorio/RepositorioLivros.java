@@ -21,14 +21,15 @@ public class RepositorioLivros {
             conexao = DBConnection.openConnection();
             
             sql = conexao.prepareStatement(
-                    "INSERT INTO livros (titulo,ano,editora,autor,tem,edicao,serie) VALUES ("
+                    "INSERT INTO livros (titulo,ano,editora,autor,tem,edicao,serie,imagem) VALUES ("
                             + "'" + livro.getTitulo() + "', "
                             + "'" + livro.getAno()+ "', "
                             + "'" + livro.getEditora()+ "', "
                             + "'" + livro.getAutor()+ "', "
                             + "'" + livro.getTem()+ "', "
                             + "'" + livro.getEdicao()+ "', "
-                            + "'" + livro.getSerie()+ "')"
+                            + "'" + livro.getSerie()+ "',"
+                            + "'" + livro.getImagem() + "')"
             );
             
             sql.executeUpdate();
@@ -44,12 +45,21 @@ public class RepositorioLivros {
         return retorno;
     }
     
-    public static ArrayList<Livro> listar(){
+    public static ArrayList<Livro> listar(String pesquisa){
         ArrayList<Livro> livros = new ArrayList<Livro>();
         try{
             conexao = DBConnection.openConnection();
             
-            sql = conexao.prepareStatement("SELECT * FROM livros");
+            if(pesquisa.isEmpty()){
+                sql = conexao.prepareStatement("SELECT * FROM livros");
+            }else{
+                sql = conexao.prepareStatement("SELECT * FROM livros WHERE "
+                        + "titulo LIKE '%"+pesquisa+"%' OR "
+                        + "autor LIKE '%"+pesquisa+"%' OR "
+                        + "editora LIKE '%"+pesquisa+"%' OR "
+                        + "serie LIKE '%"+pesquisa+"%'"
+                );
+            }
             
             ResultSet rs = sql.executeQuery();
             
@@ -61,7 +71,8 @@ public class RepositorioLivros {
                         rs.getString("editora"),
                         rs.getString("serie"),
                         rs.getString("edicao"),
-                        rs.getInt("tem")
+                        rs.getInt("tem"),
+                        rs.getString("imagem")
                 ));
             }
             
