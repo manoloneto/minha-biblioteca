@@ -17,12 +17,17 @@ import javax.swing.JLabel;
  * @author manoel.neto
  */
 public class TelaDetalhes extends javax.swing.JFrame {
+    
+    private String semCapa = "https://niihtraducoes.files.wordpress.com/2018/01/livros-sem-capa.jpg";
+    private Livro livro = null;
 
     /**
      * Creates new form TelaDetalhes
      */
     public TelaDetalhes(Livro livro) {
         initComponents();
+        
+        this.livro = livro;
         
         if(livro != null) {
             carregaLivro(livro);
@@ -42,6 +47,12 @@ public class TelaDetalhes extends javax.swing.JFrame {
         txtImage = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         txtAutor = new javax.swing.JLabel();
+        txtEditora = new javax.swing.JLabel();
+        txtAno = new javax.swing.JLabel();
+        txtEdicao = new javax.swing.JLabel();
+        txtSerie = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,35 +67,72 @@ public class TelaDetalhes extends javax.swing.JFrame {
 
         txtAutor.setText("Autor: ");
 
+        txtEditora.setText("Editora: ");
+
+        txtAno.setText("Ano: ");
+
+        txtEdicao.setText("Edição: ");
+
+        txtSerie.setText("Série:");
+
+        btnEditar.setText("Editar");
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarMouseClicked(evt);
+            }
+        });
+
+        btnDeletar.setText("Deletar");
+        btnDeletar.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
+                .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVoltar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtEditora, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                        .addComponent(txtAno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtEdicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSerie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                            .addComponent(txtAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(btnDeletar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVoltar)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAutor))
+                        .addComponent(txtAutor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEditora)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtAno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEdicao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSerie)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVoltar)
+                            .addComponent(btnEditar)
+                            .addComponent(btnDeletar)))
                     .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(btnVoltar)
-                .addGap(18, 18, 18))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,9 +141,14 @@ public class TelaDetalhes extends javax.swing.JFrame {
 
     private void carregaLivro(Livro livro){
         if(livro.hasImagem()) carregaImagem(livro.getImagem());
+        else carregaImagem(this.semCapa);
         
         txtTitulo.setText("Título: " + livro.getTitulo());
         txtAutor.setText("Autor: " + livro.getAutor());
+        txtAno.setText("Ano: " + livro.getAno());
+        txtEditora.setText("Editora: " + livro.getEditora());
+        txtEdicao.setText("Edição: " + livro.getEdicao());
+        txtSerie.setText("Série: " + livro.getSerie());
     }
     
     private void carregaImagem(String imagem){
@@ -112,6 +165,12 @@ public class TelaDetalhes extends javax.swing.JFrame {
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
+        TelaNovoLivro tela = new TelaNovoLivro(livro);
+        tela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnEditarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -149,9 +208,15 @@ public class TelaDetalhes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeletar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel txtAno;
     private javax.swing.JLabel txtAutor;
+    private javax.swing.JLabel txtEdicao;
+    private javax.swing.JLabel txtEditora;
     private javax.swing.JLabel txtImage;
+    private javax.swing.JLabel txtSerie;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

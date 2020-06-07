@@ -4,6 +4,7 @@ package classes;
  * @author manoel.neto
  */
 public class Livro {
+    private int id;
     private String titulo;
     private int ano;
     private String autor;
@@ -41,6 +42,31 @@ public class Livro {
         else this.serie = titulo;
         
         this.imagem = imagem;
+    }
+
+    public Livro(int id, String titulo, int ano, String autor, String editora, String serie, String edicao, int tem, String imagem) {
+        this.id = id;
+        this.titulo = titulo;
+        this.ano = ano;
+        this.autor = autor;
+        this.editora = editora;
+        this.edicao = edicao;
+        
+        if(tem == 1) this.tem = true;
+        else this.tem = false;
+        
+        if(serie != null) this.serie = serie;
+        else this.serie = titulo;
+        
+        this.imagem = imagem;
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getTitulo() {

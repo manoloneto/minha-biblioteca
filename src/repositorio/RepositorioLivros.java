@@ -45,6 +45,37 @@ public class RepositorioLivros {
         return retorno;
     }
     
+    public static boolean atualizar(Livro livro){
+        boolean retorno = false;
+        try{
+            conexao = DBConnection.openConnection();
+            
+            sql = conexao.prepareStatement(
+                    "UPDATE livros SET "
+                            + "titulo = '" + livro.getTitulo() + "', "
+                            + "ano = '" + livro.getAno() + "', "
+                            + "editora = '" + livro.getEditora() + "', "
+                            + "autor = '" + livro.getAutor() + "', "
+                            + "tem = '" + livro.getTem() + "', "
+                            + "edicao = '" + livro.getEdicao() + "', "
+                            + "serie = '" + livro.getSerie() + "', "
+                            + "imagem = '" + livro.getImagem() + "' "
+                     + "WHERE id = '" + livro.getId() + "'"
+            );
+            
+            sql.executeUpdate();
+            
+            retorno = true;
+            
+        }catch(Exception e){
+            retorno = false;
+        } finally {
+            DBConnection.closeConnection(conexao);
+        }
+        
+        return retorno;
+    }
+    
     public static ArrayList<Livro> listar(String pesquisa){
         ArrayList<Livro> livros = new ArrayList<Livro>();
         try{
@@ -65,6 +96,7 @@ public class RepositorioLivros {
             
             while(rs.next()){
                 livros.add(new Livro(
+                        rs.getInt("id"),
                         rs.getString("titulo"),
                         rs.getInt("ano"),
                         rs.getString("autor"),
