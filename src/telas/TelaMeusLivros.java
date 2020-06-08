@@ -41,6 +41,13 @@ public class TelaMeusLivros extends javax.swing.JFrame {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         tblLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,6 +149,10 @@ public class TelaMeusLivros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblLivrosMousePressed
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        carregarTabela();
+    }//GEN-LAST:event_formWindowGainedFocus
+
     private void carregarTabela(){
         livros = RepositorioLivros.listar(txtPesquisa.getText());
         
@@ -201,6 +212,8 @@ public class TelaMeusLivros extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiltrar;

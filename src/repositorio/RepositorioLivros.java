@@ -76,6 +76,28 @@ public class RepositorioLivros {
         return retorno;
     }
     
+    public static boolean deletar(Livro livro){
+        boolean retorno = false;
+        try{
+            conexao = DBConnection.openConnection();
+            
+            sql = conexao.prepareStatement(
+                    "DELETE FROM livros WHERE id = '" + livro.getId() + "'"
+            );
+            
+            sql.executeUpdate();
+            
+            retorno = true;
+            
+        }catch(Exception e){
+            retorno = false;
+        } finally {
+            DBConnection.closeConnection(conexao);
+        }
+        
+        return retorno;
+    }
+    
     public static ArrayList<Livro> listar(String pesquisa){
         ArrayList<Livro> livros = new ArrayList<Livro>();
         try{

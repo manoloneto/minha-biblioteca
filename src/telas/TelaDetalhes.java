@@ -11,6 +11,8 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import repositorio.RepositorioLivros;
 
 /**
  *
@@ -55,6 +57,7 @@ public class TelaDetalhes extends javax.swing.JFrame {
         btnDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         txtTitulo.setText("Título: ");
 
@@ -83,7 +86,11 @@ public class TelaDetalhes extends javax.swing.JFrame {
         });
 
         btnDeletar.setText("Deletar");
-        btnDeletar.setEnabled(false);
+        btnDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeletarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,6 +179,23 @@ public class TelaDetalhes extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnEditarMouseClicked
 
+    private void btnDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarMouseClicked
+        int resp = JOptionPane.showInternalConfirmDialog(null, "Você tem certeza que gostaria de excluir o livro\n"+this.livro.getTitulo()+"\npermanentemente da sua bibliotéca?", "Excluir livro", 0);
+        if(resp == 0){
+            deletarLivro();
+        }
+    }//GEN-LAST:event_btnDeletarMouseClicked
+
+    private void deletarLivro(){
+        boolean deletado = RepositorioLivros.deletar(this.livro);
+        if(deletado){
+            JOptionPane.showMessageDialog(rootPane, "Livro deletado com sucesso!");
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Erro ao deletar livro, tente novamente mais tarde...");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
